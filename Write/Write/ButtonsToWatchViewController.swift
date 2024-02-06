@@ -1,22 +1,23 @@
 //
-//  WatchedViewController.swift
+//  ButtonsToWatchViewController.swift
 //  Write
 //
-//  Created by O on 03/02/2024.
+//  Created by O on 04/02/2024.
 //  Copyright © 2024 FIEK. All rights reserved.
 //
 
 import UIKit
-var nameWatched = ["IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie"]
-var categoryWatched = ["Movie","Series","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie",]
-var descriptionWatched = ["bfjk sjkvbd dhbs dsbjbvs","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie",]
-    var myIndexTwo = 0
 
-class WatchedViewController: UIViewController {
+var nameToWatchB = ["IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie"]
+var categoryToWatchB = ["Movie","Series","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie",]
+var descriptionToWatchB = ["bfjk sjkvbd dhbs dsbjbvs","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie","IT","Movie",]
+var myIndexThree = 0
+
+class ButtonsToWatchViewController: UIViewController {
     
+    @IBOutlet weak var TableButtons: UITableView!
     
-    @IBOutlet weak var WatchedTable: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,18 +41,16 @@ class WatchedViewController: UIViewController {
     */
 
 }
-
-
-extension WatchedViewController: UITableViewDelegate, UITableViewDataSource{
+extension ButtonsToWatchViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return nameWatched.count
+        return nameToWatchB.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellTwo = WatchedTable.dequeueReusableCell(withIdentifier: "cellTwo", for:indexPath)
+        let cellTwo = TableButtons.dequeueReusableCell(withIdentifier: "cellThree", for:indexPath)
         
-        cellTwo.textLabel?.text = nameWatched[indexPath.row]
+        cellTwo.textLabel?.text = nameToWatchB[indexPath.row]
         
         return cellTwo
     }
@@ -63,10 +62,11 @@ extension WatchedViewController: UITableViewDelegate, UITableViewDataSource{
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Perform the segue
-        performSegue(withIdentifier: "homeTwo", sender: self)
+        performSegue(withIdentifier: "homeThree", sender: self)
     }
     
     
     
     
 }
+

@@ -14,10 +14,12 @@
 		0E3759152B6E529E00AC987F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E3759142B6E529E00AC987F /* Assets.xcassets */; };
 		0E3759182B6E529E00AC987F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E3759162B6E529E00AC987F /* LaunchScreen.storyboard */; };
 		0E3759202B6E5E8F00AC987F /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37591F2B6E5E8F00AC987F /* AddNewViewController.swift */; };
-		0E3759222B6E696300AC987F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3759212B6E696300AC987F /* HomeViewController.swift */; };
 		0E3759242B6E71B900AC987F /* ToWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3759232B6E71B900AC987F /* ToWatchViewController.swift */; };
 		0E3759262B6E829500AC987F /* HomeTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3759252B6E829500AC987F /* HomeTwoViewController.swift */; };
 		0E3759282B6E82C100AC987F /* WatchedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3759272B6E82C100AC987F /* WatchedViewController.swift */; };
+		0E45ECFA2B6EFD92005DB1D6 /* HomeTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */; };
+		0E45ECFC2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */; };
+		0E66D6822B71BA2D00C0562B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E66D6812B71BA2D00C0562B /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +32,12 @@
 		0E3759172B6E529E00AC987F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E3759192B6E529E00AC987F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E37591F2B6E5E8F00AC987F /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
-		0E3759212B6E696300AC987F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0E3759232B6E71B900AC987F /* ToWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToWatchViewController.swift; sourceTree = "<group>"; };
 		0E3759252B6E829500AC987F /* HomeTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTwoViewController.swift; sourceTree = "<group>"; };
 		0E3759272B6E82C100AC987F /* WatchedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedViewController.swift; sourceTree = "<group>"; };
+		0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTreeViewController.swift; sourceTree = "<group>"; };
+		0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsToWatchViewController.swift; sourceTree = "<group>"; };
+		0E66D6812B71BA2D00C0562B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +70,15 @@
 		0E3759092B6E529E00AC987F /* Write */ = {
 			isa = PBXGroup;
 			children = (
+				0E66D6812B71BA2D00C0562B /* HomeViewController.swift */,
 				0E37590A2B6E529E00AC987F /* AppDelegate.swift */,
 				0E37590C2B6E529E00AC987F /* ViewController.swift */,
 				0E37590E2B6E529E00AC987F /* Main.storyboard */,
+				0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */,
+				0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */,
 				0E3759272B6E82C100AC987F /* WatchedViewController.swift */,
 				0E3759252B6E829500AC987F /* HomeTwoViewController.swift */,
 				0E3759232B6E71B900AC987F /* ToWatchViewController.swift */,
-				0E3759212B6E696300AC987F /* HomeViewController.swift */,
 				0E37591F2B6E5E8F00AC987F /* AddNewViewController.swift */,
 				0E3759142B6E529E00AC987F /* Assets.xcassets */,
 				0E3759162B6E529E00AC987F /* LaunchScreen.storyboard */,
@@ -155,10 +161,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E3759262B6E829500AC987F /* HomeTwoViewController.swift in Sources */,
-				0E3759222B6E696300AC987F /* HomeViewController.swift in Sources */,
+				0E45ECFA2B6EFD92005DB1D6 /* HomeTreeViewController.swift in Sources */,
 				0E37590D2B6E529E00AC987F /* ViewController.swift in Sources */,
 				0E3759132B6E529E00AC987F /* Write.xcdatamodeld in Sources */,
 				0E37590B2B6E529E00AC987F /* AppDelegate.swift in Sources */,
+				0E45ECFC2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift in Sources */,
+				0E66D6822B71BA2D00C0562B /* HomeViewController.swift in Sources */,
 				0E3759282B6E82C100AC987F /* WatchedViewController.swift in Sources */,
 				0E3759202B6E5E8F00AC987F /* AddNewViewController.swift in Sources */,
 				0E3759242B6E71B900AC987F /* ToWatchViewController.swift in Sources */,

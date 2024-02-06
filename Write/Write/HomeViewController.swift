@@ -8,13 +8,17 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+
+class HomeViewController: UIViewController{
 
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,10 +27,19 @@ class HomeViewController: UIViewController {
         descriptionLabel.text = descriptionsKos[myIndex]
         
         
+        
+        
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+    @IBAction func yesButton(_ sender: Any) {
+        createAlert(titleText:"Added succesfuly", messageText: "The item is added to ")
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,5 +55,15 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func createAlert(titleText:String, messageText:String){
+        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Done", style: .default, handler: { (action) in alert.dismiss(animated:true, completion: nil)
+            
+        }
+        ))
+        self.present(alert, animated:true, completion: nil)
+    }
 
 }
+
+
