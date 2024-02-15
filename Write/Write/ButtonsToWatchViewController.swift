@@ -8,9 +8,9 @@
 import UIKit
 import SQLite3
 
+  var myIndexThree = 0
+
 class ButtonsToWatchViewController: UIViewController {
-    
-    
     
     @IBOutlet weak var TableButtons: UITableView!
     
@@ -18,7 +18,7 @@ class ButtonsToWatchViewController: UIViewController {
     var categoryToWatchB = [String]()
     var descriptionToWatchB = [String]()
     
-    var myIndexThree = 0
+  
        
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,13 @@ class ButtonsToWatchViewController: UIViewController {
             self.TableButtons.reloadData()
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if segue.identifier == "homeThree" {
+               if let destinationVC = segue.destination as? HomeViewController {
+                   destinationVC.myIndex = MyIndex
+               }
+           }
+       }
 
 }
 
@@ -83,11 +90,12 @@ extension ButtonsToWatchViewController: UITableViewDelegate, UITableViewDataSour
         return cellTwo
     }
     
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        myIndexThree = indexPath.row
-        // Deselect the row with animation
-        tableView.deselectRow(at: indexPath, animated: true)
-        // Perform the segue
+        // Perform actions when a row is selected
+          myIndexThree  = indexPath.row;
+        TableButtons.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "homeThree", sender: self)
+        
     }
 }

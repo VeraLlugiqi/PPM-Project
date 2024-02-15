@@ -6,48 +6,6 @@
 //  Copyright © 2024 FIEK. All rights reserved.
 //
 //
-//import UIKit
-//
-//class HomeTwoViewController: UIViewController {
-//
-//    
-//    @IBOutlet weak var watchedName: UILabel!
-//    
-//    @IBOutlet weak var watchedCategory: UILabel!
-//    
-//    @IBOutlet weak var watchedDescription: UILabel!
-//    
-//    
-//    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        watchedName.text = nameWatched[myIndexTwo]
-//        watchedCategory.text = categoryWatched[myIndexTwo]
-//        watchedDescription.text = descriptionWatched[myIndexTwo]
-//
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//    
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
-
 import UIKit
 import SQLite3
 
@@ -82,11 +40,11 @@ class HomeTwoViewController: UIViewController {
     }
     
     func fetchWatchedData() {
-        let query = "SELECT Name, Category, Description FROM Watched WHERE rowid = ?"
+        let query = "SELECT Name, Category, Description FROM Watched WHERE ID = ?"
         var queryStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(queryStatement, 1, Int32(myIndexTwo + 1))
+            sqlite3_bind_int(queryStatement, 1, Int32(myIndexTwo + 2))
             
             if sqlite3_step(queryStatement) == SQLITE_ROW {
                 let name = String(cString: sqlite3_column_text(queryStatement, 0))

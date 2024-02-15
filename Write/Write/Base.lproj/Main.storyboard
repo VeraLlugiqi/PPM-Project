@@ -572,7 +572,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VsR-A2-duh">
                                 <rect key="frame" x="28" y="80" width="358" height="32.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.97011403257669848" green="1" blue="0.98735013281694306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -582,7 +582,7 @@
                                     <constraint firstAttribute="width" constant="358" id="Lsh-hq-epp"/>
                                     <constraint firstAttribute="height" constant="28.670000000000002" id="vqX-sT-PD0"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="0.97011403257669848" green="1" blue="0.98735013281694306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -592,7 +592,7 @@
                                     <constraint firstAttribute="height" constant="276" id="U8e-Ft-nug"/>
                                     <constraint firstAttribute="width" constant="358" id="idR-lm-G3U"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.97011403257669848" green="1" blue="0.98735013281694306" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1227,8 +1227,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nEE-cr-RTR"/>
-        <segue reference="GRr-Lp-jXy"/>
-        <segue reference="tOP-dw-cXZ"/>
-        <segue reference="Ztc-lX-9iy"/>
+        <segue reference="Iyp-7Z-xW1"/>
+        <segue reference="nfX-ou-tps"/>
+        <segue reference="hQA-of-e8j"/>
     </inferredMetricsTieBreakers>
 </document>
