@@ -12,7 +12,6 @@ var databasePointer: OpaquePointer?
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
     
     

@@ -68,8 +68,8 @@ class WatchedViewController: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == "homeTwo" {
-               if let destinationVC = segue.destination as? HomeViewController {
-                   destinationVC.myIndex = MyIndex
+               if let destinationVC = segue.destination as? HomeTwoViewController {
+                   destinationVC.myIndexTwo = MyIndexTwo
                }
            }
        }

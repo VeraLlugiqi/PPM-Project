@@ -9,7 +9,9 @@
 
 import UIKit
 import SQLite3
+
 var MyIndex = 0;
+
 class ToWatchViewController: UIViewController {
     @IBOutlet weak var toWatchTable: UITableView!
     

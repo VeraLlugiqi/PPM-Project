@@ -36,6 +36,10 @@ class HomeTreeViewController: UIViewController {
         }
     }
     
+    @IBAction func yesButton(_ sender: Any) {
+        insertData()
+               createAlert(titleText: "Added successfully", messageText: "The item is added to your list.")
+    }
     
     
     func fetchToWatchData() {
@@ -43,7 +47,7 @@ class HomeTreeViewController: UIViewController {
         var queryStatement: OpaquePointer?
 
         if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(queryStatement, 1, Int32(myIndexThree + 2))
+            sqlite3_bind_int(queryStatement, 1, Int32(myIndexThree + 3))
 
             if sqlite3_step(queryStatement) == SQLITE_ROW {
                 let name = String(cString: sqlite3_column_text(queryStatement, 0))
@@ -62,6 +66,38 @@ class HomeTreeViewController: UIViewController {
         sqlite3_finalize(queryStatement)
     }
     func closeDatabase() {
+        sqlite3_close(db)
+    }
+    func insertData() {
+        let insertStatementString = "INSERT INTO Watched (Name, Category, Description) VALUES (?, ?, ?);"
+        var insertStatement: OpaquePointer?
+
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            let name = nameLabelButtons.text ?? ""
+            let category = categoryLabelButtons.text ?? ""
+            let description = descriptionLabelButtons.text ?? ""
+
+            sqlite3_bind_text(insertStatement, 1, (name as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, (category as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 3, (description as NSString).utf8String, -1, nil)
+
+            if sqlite3_step(insertStatement) != SQLITE_DONE {
+                print("Error inserting row into Watched table")
+            }
+        }
+
+        sqlite3_finalize(insertStatement)
+    }
+
+    func createAlert(titleText: String, messageText: String) {
+        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    deinit {
         sqlite3_close(db)
     }
 }

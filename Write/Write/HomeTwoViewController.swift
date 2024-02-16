@@ -44,7 +44,7 @@ class HomeTwoViewController: UIViewController {
         var queryStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(queryStatement, 1, Int32(myIndexTwo + 2))
+            sqlite3_bind_int(queryStatement, 1, Int32(myIndexTwo + 1))
             
             if sqlite3_step(queryStatement) == SQLITE_ROW {
                 let name = String(cString: sqlite3_column_text(queryStatement, 0))
