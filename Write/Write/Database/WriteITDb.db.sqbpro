@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/macbookpro/Desktop/PPM-Project-main/Write/Write/Database/WriteITDb.db" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1197"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Watched"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">--INSERT INTO toWatch (Name, Category, Description,IsWatched) VALUES ('Friends', 'Series', 'Good!','No');
 --INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES ('Descendantssss', 'Movies',  'BestMovie', 'Yes');
 select * from toWatch;
+--INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES ('Hunger Games', 'Movies',  'Only the 2024 one', 'No');
 
 --INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES ('American', 'Movies',  'Good movie', 'No');
 --INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES ('Openheimer', 'Documentaries',  'Great story', 'No');
 --INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES ('Dropshipping', 'Others',  'Youtube channel', 'No');
---INSERT INTO toWatch (Name, Category, Description,IsWatched) VALUES ('Barbie', 'Movies', 'Good!','No');
+--INSERT INTO toWatch (Name, Category, Description,IsWatched) VALUES ('The great', 'Series', '3 seasons','No');
 --delete from toWatch where IsWatched == 0;
 </sql><current_tab id="0"/></tab_sql></sqlb_project>

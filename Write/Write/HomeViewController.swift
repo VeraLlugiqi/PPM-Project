@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
 
-    var db: OpaquePointer? // Database connection
+    var db: OpaquePointer?
     var myIndex = 0
 
     override func viewDidLoad() {
@@ -30,10 +30,10 @@ class HomeViewController: UIViewController {
     }
 
     func openDatabase() {
-        // Get the full path to the SQLite database file
+     
         let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
 
-        // Open the database connection
+        
         if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
             print("Error opening database connection")
         }
@@ -60,12 +60,51 @@ class HomeViewController: UIViewController {
         sqlite3_finalize(queryStatement)
     }
 
-    @IBAction func yesButton(_ sender: Any) {
-        insertData()
-        createAlert(titleText: "Added successfully", messageText: "The item is added to your list.")
+ @IBAction func yesButton(_ sender: Any) {
+       
+    if let presentedViewController = self.presentedViewController {
+            presentedViewController.dismiss(animated: false) {
+                self.presentAlert()
+            }
+        } else {
+            self.presentAlert()
+        }
+           insertData()
+           deleteFromToWatch()
+     
+    }
+    
+    func presentAlert() {
+        let alertController = UIAlertController(title: "Moved Successfully", message: "Your item has been moved to Watched list!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
 
+    func deleteFromToWatch() {
+        let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"
+        var deleteStatement: OpaquePointer?
+    
+        if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
+            let name = nameLabel.text ?? ""
+            let category = categoryLabel.text ?? ""
+            let description = descriptionLabel.text ?? ""
+    
+            sqlite3_bind_text(deleteStatement, 1, (name as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(deleteStatement, 2, (category as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(deleteStatement, 3, (description as NSString).utf8String, -1, nil)
+    
+            if sqlite3_step(deleteStatement) != SQLITE_DONE {
+                print("Error deleting row from toWatch table")
+            }
+        }
+    
+        sqlite3_finalize(deleteStatement)
+          }
+    
+    
     func insertData() {
+        
         let insertStatementString = "INSERT INTO Watched (Name, Category, Description) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
 
@@ -84,15 +123,8 @@ class HomeViewController: UIViewController {
         }
 
         sqlite3_finalize(insertStatement)
-    }
+         }
 
-    func createAlert(titleText: String, messageText: String) {
-        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
 
     deinit {
         sqlite3_close(db)

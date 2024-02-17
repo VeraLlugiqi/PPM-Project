@@ -13,9 +13,9 @@ var MyIndexTwo = 0;
 class WatchedViewController: UIViewController {
     @IBOutlet weak var watchedTable: UITableView!
     
-    var watchedData = [(String, String, String)]() // Array to hold fetched data
+    var watchedData = [(String, String, String)]()
     
-    var db: OpaquePointer? // Database connection
+    var db: OpaquePointer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +28,10 @@ class WatchedViewController: UIViewController {
     }
   
     func openDatabase() {
-        // Get the full path to the SQLite database file
+        
         let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
         
-        // Open the database connection
+      
         if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
             print("Error opening database connection")
         }
@@ -84,14 +84,13 @@ extension WatchedViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo", for: indexPath)
         
         let watchedItem = watchedData[indexPath.row]
-        cell.textLabel?.text = watchedItem.0 // Display name
+        cell.textLabel?.text = watchedItem.0
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Perform actions when a row is selected
         MyIndexTwo = indexPath.row;
               watchedTable.deselectRow(at: indexPath, animated: true)
               performSegue(withIdentifier: "homeTwo", sender: self)

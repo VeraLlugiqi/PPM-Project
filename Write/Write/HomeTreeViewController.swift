@@ -13,41 +13,47 @@ class HomeTreeViewController: UIViewController {
     @IBOutlet weak var nameLabelButtons: UILabel!
     @IBOutlet weak var categoryLabelButtons: UILabel!
     @IBOutlet weak var descriptionLabelButtons: UILabel!
-    @IBOutlet weak var watchedStatusLabel: UILabel! // Added label to display Watched status
+    @IBOutlet weak var watchedStatusLabel: UILabel!
     
-    var db: OpaquePointer? // Database connection
+    var db: OpaquePointer?
     
     var myIndexThree = 0
+    var id = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         openDatabase()
         fetchToWatchData()
-        closeDatabase()
+       // closeDatabase()
+        
     }
     
     func openDatabase() {
-        // Get the full path to the SQLite database file
+       
         let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
         
-        // Open the database connection
+   
         if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
             print("Error opening database connection")
         }
     }
     
     @IBAction func yesButton(_ sender: Any) {
+        
+        createAlert(titleText: "Added successfully", messageText: "The item is added to your Watched list.")
         insertData()
-               createAlert(titleText: "Added successfully", messageText: "The item is added to your list.")
+        deleteFromToWatch()
     }
     
     
     func fetchToWatchData() {
-        let query = "SELECT Name, Category, Description FROM toWatch WHERE ID = ?"
+        var query = "SELECT Name, Category, Description FROM toWatch WHERE ID IN ("
+        query += id.map { String($0) }.joined(separator: ",")
+        query += ");"
         var queryStatement: OpaquePointer?
 
         if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_int(queryStatement, 1, Int32(myIndexThree + 3))
+//            sqlite3_bind_int(queryStatement, 1, Int32(myIndexThree + 2))
 
             if sqlite3_step(queryStatement) == SQLITE_ROW {
                 let name = String(cString: sqlite3_column_text(queryStatement, 0))
@@ -100,4 +106,24 @@ class HomeTreeViewController: UIViewController {
     deinit {
         sqlite3_close(db)
     }
-}
+    
+        func deleteFromToWatch() {
+        let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"
+        var deleteStatement: OpaquePointer?
+    
+        if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
+            let name = nameLabelButtons.text ?? ""
+            let category = categoryLabelButtons.text ?? ""
+            let description = descriptionLabelButtons.text ?? ""
+    
+            sqlite3_bind_text(deleteStatement, 1, (name as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(deleteStatement, 2, (category as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(deleteStatement, 3, (description as NSString).utf8String, -1, nil)
+    
+            if sqlite3_step(deleteStatement) != SQLITE_DONE {
+                print("Error deleting row from toWatch table")
+            }
+        }
+    
+        sqlite3_finalize(deleteStatement)
+          }}

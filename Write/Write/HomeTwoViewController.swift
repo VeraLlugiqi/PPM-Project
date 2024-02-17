@@ -26,10 +26,10 @@ class HomeTwoViewController: UIViewController {
     }
     
     func openDatabase() {
-           // Get the full path to the SQLite database file
+          
            let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
            
-           // Open the database connection
+          
            if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
                print("Error opening database connection")
            }

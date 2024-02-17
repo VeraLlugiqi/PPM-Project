@@ -65,16 +65,13 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     
     func openDatabase() {
-        // Get the full path to the SQLite database file
         let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
 
-        // Open the database connection
         if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
             print("Error opening database connection")
             return
         }
         
-        // Start a transaction
         let beginSQL = "BEGIN TRANSACTION;"
         if sqlite3_exec(db, beginSQL, nil, nil, nil) != SQLITE_OK {
             let errorMessage = String(cString: sqlite3_errmsg(db)!)
@@ -141,24 +138,10 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
 
     @IBAction func addButton(_ sender: Any) {
-//          createAlert(titleText:"Added succesfuly", messageText: "The item is added")
          insertData()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-//    override func viewDidAppear(_ animated: Bool) {
-//        createAlert(titleText:"Added succesfuly", messageText: "Added")
-//    }
-
+    
     func createAlert(titleText: String, messageText: String) {
         // Dismiss any existing UIAlertController
         if let presentedViewController = self.presentedViewController {
@@ -180,29 +163,26 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     
     func insertData() {
-        // Prepare the SQL statement for insertion
         let insertStatementString = "INSERT INTO toWatch (Name, Category, Description, IsWatched) VALUES (?, ?, ?, ?);"
         var insertStatement: OpaquePointer?
 
         // Prepare the SQL statement
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
-            // Bind parameters to the SQL statement
             let name = nameText.text ?? ""
             let category = categoryLabel.text ?? ""
             let description = descriptionText.text ?? ""
-            let isWatched = "No" // Set default value for IsWatched column
+            let isWatched = "No"
 
             sqlite3_bind_text(insertStatement, 1, (name as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 2, (category as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 3, (description as NSString).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 4, (isWatched as NSString).utf8String, -1, nil)
 
-            // Execute the SQL statement
+         
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("Successfully inserted row.")
                 createAlert(titleText: "Added successfully", messageText: "The item is added")
                 
-                // Commit the transaction to save changes
                 let commitSQL = "COMMIT TRANSACTION;"
                 if sqlite3_exec(db, commitSQL, nil, nil, nil) != SQLITE_OK {
                     let errorMessage = String(cString: sqlite3_errmsg(db)!)
@@ -217,7 +197,6 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             print("Error preparing insert statement: \(errorMessage)")
         }
 
-        // Finalize the statement to release resources
         sqlite3_finalize(insertStatement)
     }
 

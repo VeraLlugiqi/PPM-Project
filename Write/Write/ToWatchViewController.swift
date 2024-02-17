@@ -15,10 +15,10 @@ var MyIndex = 0;
 class ToWatchViewController: UIViewController {
     @IBOutlet weak var toWatchTable: UITableView!
     
-    var toWatchData = [(String, String, String, String)]() // Array to hold fetched data (including Watched column)
+    var toWatchData = [(String, String, String, String)]()
     
     
-    var db: OpaquePointer? // Database connection
+    var db: OpaquePointer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +26,15 @@ class ToWatchViewController: UIViewController {
         fetchToWatchData()
         closeDatabase()
         
-        toWatchTable.reloadData() // Reload table view after fetching data
+        toWatchTable.reloadData()
     }
   
     
     func openDatabase() {
-        // Get the full path to the SQLite database file
+        
         let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
         
-        // Open the database connection
+       
         if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
             print("Error opening database connection")
         }
@@ -87,7 +87,6 @@ extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Perform actions when a row is selected
         MyIndex = indexPath.row;
         toWatchTable.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "home", sender: self)

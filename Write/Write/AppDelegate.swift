@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             databasePointer = dbPointer
         }
         else{
-            // print or something
+         
         }
         return true
     }
