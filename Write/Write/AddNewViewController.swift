@@ -10,11 +10,14 @@ import UIKit
 import CoreLocation
 import SQLite3
 
+
 class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var nameText: UITextField!
     
 
+    let dbConnect = DBConnect()
+    
     @IBOutlet weak var descriptionText: UITextView!
     
 
@@ -33,17 +36,18 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let categoryValues = ["Movies", "Series", "Shows", "Documentaries", "Others"]
     var categoryName: String = "NA"
 
-    var db: OpaquePointer?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        dbConnect.openDatabase()
+
         categoryLabel.delegate = self
         setCategoryPicker()
-        openDatabase()
-    }
+            }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        closeDatabase()
+        dbConnect.closeDatabase()
     }
 
     func setCategoryPicker() {
@@ -63,21 +67,7 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
 
 
-    
-    func openDatabase() {
-        let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
 
-        if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-            print("Error opening database connection")
-            return
-        }
-        
-        let beginSQL = "BEGIN TRANSACTION;"
-        if sqlite3_exec(db, beginSQL, nil, nil, nil) != SQLITE_OK {
-            let errorMessage = String(cString: sqlite3_errmsg(db)!)
-            print("Error starting transaction: \(errorMessage)")
-        }
-    }
 
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -112,9 +102,7 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     }
 
-    func closeDatabase() {
-        sqlite3_close(db)
-    }
+
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if (textField == categoryLabel){
@@ -167,7 +155,7 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         var insertStatement: OpaquePointer?
 
         // Prepare the SQL statement
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             let name = nameText.text ?? ""
             let category = categoryLabel.text ?? ""
             let description = descriptionText.text ?? ""
@@ -184,16 +172,16 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 createAlert(titleText: "Added successfully", messageText: "The item is added")
                 
                 let commitSQL = "COMMIT TRANSACTION;"
-                if sqlite3_exec(db, commitSQL, nil, nil, nil) != SQLITE_OK {
-                    let errorMessage = String(cString: sqlite3_errmsg(db)!)
+                if sqlite3_exec(dbConnect.db, commitSQL, nil, nil, nil) != SQLITE_OK {
+                    let errorMessage = String(cString: sqlite3_errmsg(dbConnect.db)!)
                     print("Error committing transaction: \(errorMessage)")
                 }
             } else {
-                let errorMessage = String(cString: sqlite3_errmsg(db)!)
+                let errorMessage = String(cString: sqlite3_errmsg(dbConnect.db)!)
                 print("Error inserting row: \(errorMessage)")
             }
         } else {
-            let errorMessage = String(cString: sqlite3_errmsg(db)!)
+            let errorMessage = String(cString: sqlite3_errmsg(dbConnect.db)!)
             print("Error preparing insert statement: \(errorMessage)")
         }
 

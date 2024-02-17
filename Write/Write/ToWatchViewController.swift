@@ -18,37 +18,24 @@ class ToWatchViewController: UIViewController {
     var toWatchData = [(String, String, String, String)]()
     
     
-    var db: OpaquePointer?
+    
+    let dbConnect = DBConnect()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        openDatabase()
+        dbConnect.openDatabase()
         fetchToWatchData()
-        closeDatabase()
+        dbConnect.closeDatabase()
         
         toWatchTable.reloadData()
     }
   
     
-    func openDatabase() {
-        
-        let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
-        
-       
-        if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-            print("Error opening database connection")
-        }
-    }
-    
-    func closeDatabase() {
-        sqlite3_close(db)
-    }
-    
     func fetchToWatchData() {
         let query = "SELECT Name, Category, Description,IsWatched FROM toWatch"
         var queryStatement: OpaquePointer?
         
-        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, query, -1, &queryStatement, nil) == SQLITE_OK {
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let name = String(cString: sqlite3_column_text(queryStatement, 0))
                 let category = String(cString: sqlite3_column_text(queryStatement, 1))
@@ -88,7 +75,7 @@ extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MyIndex = indexPath.row;
-        toWatchTable.deselectRow(at: indexPath, animated: true)
+//        toWatchTable.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "home", sender: self)
         
     }

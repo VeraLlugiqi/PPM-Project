@@ -286,14 +286,23 @@
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ef-rq-gmm">
                                 <rect key="frame" x="70" y="666" width="41" height="30"/>
                                 <state key="normal" title="Home"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="1bO-X9-OIC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCk-yN-HsU">
                                 <rect key="frame" x="161" y="666" width="62" height="30"/>
                                 <state key="normal" title="To watch"/>
+                                <connections>
+                                    <segue destination="Gsq-u4-ViG" kind="show" id="rJh-sZ-YsD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nel-gl-uvT">
                                 <rect key="frame" x="270" y="666" width="74" height="30"/>
                                 <state key="normal" title="Watched"/>
+                                <connections>
+                                    <segue destination="T7P-Is-y5I" kind="show" id="xhY-LH-Rg5"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4P-WA-U6m">
                                 <rect key="frame" x="20" y="86" width="57" height="24"/>
@@ -498,7 +507,7 @@
                                 <color key="textColor" red="0.01282667648" green="0.4770217538" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="________________________________________________" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOc-e2-2uQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="_______________________________________________" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOc-e2-2uQ">
                                 <rect key="frame" x="34" y="647" width="346" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.01282667648" green="0.4770217538" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1058,7 +1067,7 @@
                                 <rect key="frame" x="161" y="666" width="62" height="30"/>
                                 <state key="normal" title="To watch"/>
                                 <connections>
-                                    <segue destination="T7P-Is-y5I" kind="show" id="GRr-Lp-jXy"/>
+                                    <segue destination="Gsq-u4-ViG" kind="show" id="AhJ-UB-KUa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMp-YO-50q">
@@ -1068,7 +1077,7 @@
                                 </constraints>
                                 <state key="normal" title="Watched"/>
                                 <connections>
-                                    <segue destination="Gsq-u4-ViG" kind="show" id="tOP-dw-cXZ"/>
+                                    <segue destination="T7P-Is-y5I" kind="show" id="40J-L5-MER"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTu-ty-1dH">
@@ -1300,7 +1309,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="6oC-sI-ZMn"/>
         <segue reference="Iyp-7Z-xW1"/>
-        <segue reference="nfX-ou-tps"/>
-        <segue reference="Kii-vK-zGQ"/>
+        <segue reference="dib-Aa-fFn"/>
+        <segue reference="nFw-g5-qwe"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,13 +18,13 @@ class ButtonsToWatchViewController: UIViewController {
     var categoryToWatchB = [String]()
     var descriptionToWatchB = [String]()
     var id = [Int]()
-    
     var selectedCategory: String?
     
-     var db: OpaquePointer?
+    let dbConnect  = DBConnect()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        openDatabase()
+        dbConnect.openDatabase()
         fetchDataFromDatabase()
         if let category = selectedCategory {
                    print("Selected category: \(category)")
@@ -32,21 +32,11 @@ class ButtonsToWatchViewController: UIViewController {
                } else {
                    print("No category selected")
                }
-        closeDatabase()
+        dbConnect.closeDatabase()
     }
     
 
-    func openDatabase() {
-        let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
-        
-        if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-            print("Error opening database connection")
-        }
-    }
-    
-    func closeDatabase() {
-        sqlite3_close(db)
-    }
+
     func fetchDataFromDatabase() {
       
     
@@ -55,7 +45,7 @@ class ButtonsToWatchViewController: UIViewController {
         var statement: OpaquePointer?
         print("iside the function")
         let query = "SELECT Name, Category, Description, ID FROM toWatch WHERE Category = ? AND IsWatched = ?;"
-        if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, query, -1, &statement, nil) == SQLITE_OK {
 //            print("inside the first if")
             if let category = selectedCategory {
                 print("Inslide the if")
@@ -79,7 +69,7 @@ class ButtonsToWatchViewController: UIViewController {
                 }
             }
         } else {
-            print("Error preparing query: \(String(cString: sqlite3_errmsg(db)))")
+            print("Error preparing query: \(String(cString: sqlite3_errmsg(dbConnect.db)))")
         }
         sqlite3_finalize(statement)
 

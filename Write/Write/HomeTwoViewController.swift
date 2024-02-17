@@ -14,36 +14,26 @@ class HomeTwoViewController: UIViewController {
     @IBOutlet weak var watchedCategory: UILabel!
     @IBOutlet weak var watchedDescription: UILabel!
     
-    var db: OpaquePointer? // Database connection
+ 
     
     var myIndexTwo = 0
+    let dbConnect = DBConnect()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        openDatabase()
+        dbConnect.openDatabase()
         fetchWatchedData()
-        closeDatabase()
+        dbConnect.closeDatabase()
     }
     
-    func openDatabase() {
-          
-           let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
-           
-          
-           if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-               print("Error opening database connection")
-           }
-       }
     
-    func closeDatabase() {
-        sqlite3_close(db)
-    }
+
     
     func fetchWatchedData() {
         let query = "SELECT Name, Category, Description FROM Watched WHERE ID = ?"
         var queryStatement: OpaquePointer?
         
-        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, query, -1, &queryStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(queryStatement, 1, Int32(myIndexTwo + 1))
             
             if sqlite3_step(queryStatement) == SQLITE_ROW {

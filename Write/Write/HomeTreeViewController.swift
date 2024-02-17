@@ -15,28 +15,20 @@ class HomeTreeViewController: UIViewController {
     @IBOutlet weak var descriptionLabelButtons: UILabel!
     @IBOutlet weak var watchedStatusLabel: UILabel!
     
-    var db: OpaquePointer?
+
     
     var myIndexThree = 0
     var id = [Int]()
-    
+    let dbConnect = DBConnect()
     override func viewDidLoad() {
         super.viewDidLoad()
-        openDatabase()
+        dbConnect.openDatabase()
         fetchToWatchData()
        // closeDatabase()
         
     }
     
-    func openDatabase() {
-       
-        let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
-        
-   
-        if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-            print("Error opening database connection")
-        }
-    }
+  
     
     @IBAction func yesButton(_ sender: Any) {
         
@@ -52,7 +44,7 @@ class HomeTreeViewController: UIViewController {
         query += ");"
         var queryStatement: OpaquePointer?
 
-        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, query, -1, &queryStatement, nil) == SQLITE_OK {
 //            sqlite3_bind_int(queryStatement, 1, Int32(myIndexThree + 2))
 
             if sqlite3_step(queryStatement) == SQLITE_ROW {
@@ -72,13 +64,13 @@ class HomeTreeViewController: UIViewController {
         sqlite3_finalize(queryStatement)
     }
     func closeDatabase() {
-        sqlite3_close(db)
+        sqlite3_close(dbConnect.db)
     }
     func insertData() {
         let insertStatementString = "INSERT INTO Watched (Name, Category, Description) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
 
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             let name = nameLabelButtons.text ?? ""
             let category = categoryLabelButtons.text ?? ""
             let description = descriptionLabelButtons.text ?? ""
@@ -104,14 +96,14 @@ class HomeTreeViewController: UIViewController {
     }
 
     deinit {
-        sqlite3_close(db)
+        sqlite3_close(dbConnect.db)
     }
     
         func deleteFromToWatch() {
         let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"
         var deleteStatement: OpaquePointer?
     
-        if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
+            if sqlite3_prepare_v2(dbConnect.db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
             let name = nameLabelButtons.text ?? ""
             let category = categoryLabelButtons.text ?? ""
             let description = descriptionLabelButtons.text ?? ""

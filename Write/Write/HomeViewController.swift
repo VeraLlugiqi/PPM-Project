@@ -12,6 +12,7 @@
 
 import UIKit
 import SQLite3
+let dbConnect = DBConnect()
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var yesButton: UIButton!
@@ -20,30 +21,25 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
 
-    var db: OpaquePointer?
+  
     var myIndex = 0
+  
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        openDatabase()
+        dbConnect.openDatabase()
         fetchToWatchData()
-    }
-
-    func openDatabase() {
-     
-        let dbFilePath = Bundle.main.path(forResource: "WriteITDb", ofType: "db")!
-
         
-        if sqlite3_open(dbFilePath, &db) != SQLITE_OK {
-            print("Error opening database connection")
-        }
     }
+
 
     func fetchToWatchData() {
         let query = "SELECT Name, Category, Description FROM toWatch WHERE ID = ?"
         var queryStatement: OpaquePointer?
 
-        if sqlite3_prepare_v2(db, query, -1, &queryStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, query, -1, &queryStatement, nil) == SQLITE_OK {
             sqlite3_bind_int(queryStatement, 1, Int32(myIndex + 2))
 
             if sqlite3_step(queryStatement) == SQLITE_ROW {
@@ -85,7 +81,7 @@ class HomeViewController: UIViewController {
         let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"
         var deleteStatement: OpaquePointer?
     
-        if sqlite3_prepare_v2(db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, deleteStatementString, -1, &deleteStatement, nil) == SQLITE_OK {
             let name = nameLabel.text ?? ""
             let category = categoryLabel.text ?? ""
             let description = descriptionLabel.text ?? ""
@@ -108,7 +104,7 @@ class HomeViewController: UIViewController {
         let insertStatementString = "INSERT INTO Watched (Name, Category, Description) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
 
-        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(dbConnect.db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             let name = nameLabel.text ?? ""
             let category = categoryLabel.text ?? ""
             let description = descriptionLabel.text ?? ""
@@ -127,7 +123,7 @@ class HomeViewController: UIViewController {
 
 
     deinit {
-        sqlite3_close(db)
+        sqlite3_close(dbConnect.db)
     }
 }
 
