@@ -9,12 +9,17 @@ The application allows users to input details such as the name, category, and de
 <h3>Seamless Navigation</h3>
 The primary objective of WriteIT is to save your valuable time. Navigate effortlessly through the app, avoiding scrolling through screenshots to locate a specific programe you've seen a clip of and liked.
 
+![IoS1](https://github.com/VeraLlugiqi/PPM-Project/assets/118756985/f29e9e0f-6279-4a9e-9748-76ac39a9eba5)
+
 <h2>Getting Started</h2>
 <h3>Adding New Entries</h3>
 Open the app and navigate to the Home page.<br>
 Click the '+' button to add a new entry.<br>
 Input the name, category, and description of the movie, series, or show you plan to watch.<br>
 Find your entries neatly categorized on the app.
+
+![IoS2](https://github.com/VeraLlugiqi/PPM-Project/assets/118756985/f05e5e5f-7671-48cf-a92a-ef88c4bd48e1)
+
 <h3>Tracking Watched Programs</h3>
 After watching a program, proceed to locating the program.<br>
 Click the "Yes" button to mark the program as watched.<br>
@@ -22,6 +27,8 @@ Easily view all the programs you've watched in one place.<br>
 <h3>Enjoying Your Watchlist</h3
 Scroll through the 'To Watch' page to explore your watchlist.<br>
 Enjoy your selected programs without the hassle of indecision.
+
+![IoS3](https://github.com/VeraLlugiqi/PPM-Project/assets/118756985/d1cf0bdb-6c44-4d3f-8c36-45732e32fb1b)
 
 <h2>Technologies Used</h2>
 WriteIT has been crafted following these technologies:
