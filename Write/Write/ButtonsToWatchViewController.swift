@@ -43,7 +43,7 @@ class ButtonsToWatchViewController: UIViewController {
         
       
         var statement: OpaquePointer?
-        print("iside the function")
+        print("inside the function")
         let query = "SELECT Name, Category, Description, ID FROM toWatch WHERE Category = ? AND IsWatched = ?;"
         if sqlite3_prepare_v2(dbConnect.db, query, -1, &statement, nil) == SQLITE_OK {
 //            print("inside the first if")

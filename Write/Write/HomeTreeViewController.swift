@@ -37,6 +37,19 @@ class HomeTreeViewController: UIViewController {
         deleteFromToWatch()
     }
     
+    func createAlert(titleText: String, messageText: String) {
+        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    deinit {
+        sqlite3_close(dbConnect.db)
+    }
+
+    
     
     func fetchToWatchData() {
         var query = "SELECT Name, Category, Description FROM toWatch WHERE ID IN ("
@@ -63,9 +76,7 @@ class HomeTreeViewController: UIViewController {
 
         sqlite3_finalize(queryStatement)
     }
-    func closeDatabase() {
-        sqlite3_close(dbConnect.db)
-    }
+  
     func insertData() {
         let insertStatementString = "INSERT INTO Watched (Name, Category, Description) VALUES (?, ?, ?);"
         var insertStatement: OpaquePointer?
@@ -87,17 +98,6 @@ class HomeTreeViewController: UIViewController {
         sqlite3_finalize(insertStatement)
     }
 
-    func createAlert(titleText: String, messageText: String) {
-        let alert = UIAlertController(title: titleText, message: messageText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Done", style: .default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    deinit {
-        sqlite3_close(dbConnect.db)
-    }
     
         func deleteFromToWatch() {
         let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"

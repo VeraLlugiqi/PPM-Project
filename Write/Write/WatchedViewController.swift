@@ -17,6 +17,7 @@ class WatchedViewController: UIViewController {
     
   
     let dbConnect = DBConnect()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dbConnect.openDatabase()
@@ -48,6 +49,7 @@ class WatchedViewController: UIViewController {
         sqlite3_finalize(queryStatement)
         watchedTable.reloadData() // Reload table view after fetching all data
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if segue.identifier == "homeTwo" {
                if let destinationVC = segue.destination as? HomeTwoViewController {
@@ -57,20 +59,24 @@ class WatchedViewController: UIViewController {
        }
 }
 
+
+
 extension WatchedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return watchedData.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo", for: indexPath)
+ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo", for: indexPath) as! CustomTableViewCell
         
         let watchedItem = watchedData[indexPath.row]
-        cell.textLabel?.text = watchedItem.0
+        
+    cell.TitleLabel.text = watchedItem.0 // Display name
+    cell.CategoryLabel.text = watchedItem.1
         
         return cell
     }
-    
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MyIndexTwo = indexPath.row;

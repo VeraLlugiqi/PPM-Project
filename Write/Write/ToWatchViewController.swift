@@ -13,6 +13,7 @@ import SQLite3
 var MyIndex = 0;
 
 class ToWatchViewController: UIViewController {
+    
     @IBOutlet weak var toWatchTable: UITableView!
     
     var toWatchData = [(String, String, String, String)]()
@@ -48,6 +49,8 @@ class ToWatchViewController: UIViewController {
         
         sqlite3_finalize(queryStatement)
     }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "home" {
             if let destinationVC = segue.destination as? HomeViewController {
@@ -63,15 +66,20 @@ extension ToWatchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toWatchData.count
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "celliii", for: indexPath)
+
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celliii", for: indexPath) as! CustomTableViewCell
         
         let toWatchItem = toWatchData[indexPath.row]
-        cell.textLabel?.text = toWatchItem.0 // Display name
+        
+    
+        cell.TitleLabel.text = toWatchItem.0
+        cell.CategoryLabel.text = toWatchItem.1 
         
         return cell
     }
+
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         MyIndex = indexPath.row;

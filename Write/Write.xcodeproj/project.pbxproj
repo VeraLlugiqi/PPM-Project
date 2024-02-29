@@ -20,6 +20,7 @@
 		0E45ECFA2B6EFD92005DB1D6 /* HomeTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */; };
 		0E45ECFC2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */; };
 		0E66D6822B71BA2D00C0562B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E66D6812B71BA2D00C0562B /* HomeViewController.swift */; };
+		523616142B8FF7F400C42D5F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523616132B8FF7F400C42D5F /* CustomTableViewCell.swift */; };
 		529271402B803F65002255A5 /* DBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5292713F2B803F65002255A5 /* DBConnect.swift */; };
 		DA0334672B7461CA004F8729 /* WriteITDb.db in Resources */ = {isa = PBXBuildFile; fileRef = DA0334662B7461CA004F8729 /* WriteITDb.db */; };
 		DA0334692B746207004F8729 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0334682B746207004F8729 /* DBHelper.swift */; };
@@ -41,6 +42,7 @@
 		0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTreeViewController.swift; sourceTree = "<group>"; };
 		0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsToWatchViewController.swift; sourceTree = "<group>"; };
 		0E66D6812B71BA2D00C0562B /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		523616132B8FF7F400C42D5F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		5292713F2B803F65002255A5 /* DBConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBConnect.swift; sourceTree = "<group>"; };
 		DA0334662B7461CA004F8729 /* WriteITDb.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = WriteITDb.db; path = Write/Database/WriteITDb.db; sourceTree = SOURCE_ROOT; };
 		DA0334682B746207004F8729 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
@@ -77,16 +79,17 @@
 			isa = PBXGroup;
 			children = (
 				DA03346A2B74622C004F8729 /* Database */,
-				0E66D6812B71BA2D00C0562B /* HomeViewController.swift */,
-				0E37590A2B6E529E00AC987F /* AppDelegate.swift */,
-				0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */,
 				0E37590C2B6E529E00AC987F /* ViewController.swift */,
-				0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */,
-				0E37590E2B6E529E00AC987F /* Main.storyboard */,
-				0E3759252B6E829500AC987F /* HomeTwoViewController.swift */,
-				0E3759272B6E82C100AC987F /* WatchedViewController.swift */,
-				0E3759232B6E71B900AC987F /* ToWatchViewController.swift */,
 				0E37591F2B6E5E8F00AC987F /* AddNewViewController.swift */,
+				0E3759232B6E71B900AC987F /* ToWatchViewController.swift */,
+				0E3759272B6E82C100AC987F /* WatchedViewController.swift */,
+				0E45ECFB2B6F06A3005DB1D6 /* ButtonsToWatchViewController.swift */,
+				0E66D6812B71BA2D00C0562B /* HomeViewController.swift */,
+				0E3759252B6E829500AC987F /* HomeTwoViewController.swift */,
+				0E45ECF92B6EFD92005DB1D6 /* HomeTreeViewController.swift */,
+				523616132B8FF7F400C42D5F /* CustomTableViewCell.swift */,
+				0E37590A2B6E529E00AC987F /* AppDelegate.swift */,
+				0E37590E2B6E529E00AC987F /* Main.storyboard */,
 				0E3759142B6E529E00AC987F /* Assets.xcassets */,
 				0E3759162B6E529E00AC987F /* LaunchScreen.storyboard */,
 				0E3759192B6E529E00AC987F /* Info.plist */,
@@ -191,6 +194,7 @@
 				0E3759202B6E5E8F00AC987F /* AddNewViewController.swift in Sources */,
 				529271402B803F65002255A5 /* DBConnect.swift in Sources */,
 				0E3759242B6E71B900AC987F /* ToWatchViewController.swift in Sources */,
+				523616142B8FF7F400C42D5F /* CustomTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,16 +14,20 @@ import SQLite3
 class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var nameText: UITextField!
+    @IBOutlet weak var descriptionText: UITextView!
+    @IBOutlet weak var categoryLabel: UITextField!
     
-
+    let categoryValues = ["Movies", "Series", "Shows", "Documentaries", "Others"]
+    var categoryName: String = "NA"
     let dbConnect = DBConnect()
     
-    @IBOutlet weak var descriptionText: UITextView!
-    
+    override func viewDidLoad() {
+          super.viewDidLoad()
+          dbConnect.openDatabase()
 
-   
-
-    @IBOutlet weak var categoryLabel: UITextField!
+          categoryLabel.delegate = self
+          setCategoryPicker()
+              }
 
     lazy var categoryPicker: UIPickerView = {
         let picker = UIPickerView()
@@ -33,18 +37,7 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return picker
     }()
 
-    let categoryValues = ["Movies", "Series", "Shows", "Documentaries", "Others"]
-    var categoryName: String = "NA"
-
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dbConnect.openDatabase()
-
-        categoryLabel.delegate = self
-        setCategoryPicker()
-            }
+  
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         dbConnect.closeDatabase()
@@ -101,9 +94,6 @@ class AddNewViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
 
     }
-
-
-
     func textFieldDidEndEditing(_ textField: UITextField) {
         if (textField == categoryLabel){
             categoryPickerDone()

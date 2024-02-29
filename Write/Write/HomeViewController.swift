@@ -25,7 +25,6 @@ class HomeViewController: UIViewController {
     var myIndex = 0
   
 
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +34,28 @@ class HomeViewController: UIViewController {
     }
 
 
+ @IBAction func yesButton(_ sender: Any) {
+       
+    if let presentedViewController = self.presentedViewController {
+            presentedViewController.dismiss(animated: false) {
+                self.presentAlert()
+            }
+        } else {
+//            self.presentAlert()
+        }
+           insertData()
+           deleteFromToWatch()
+     
+    }
+    
+    func presentAlert() {
+        let alertController = UIAlertController(title: "Moved Successfully", message: "Your item has been moved to Watched list!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
     func fetchToWatchData() {
         let query = "SELECT Name, Category, Description FROM toWatch WHERE ID = ?"
         var queryStatement: OpaquePointer?
@@ -56,27 +77,8 @@ class HomeViewController: UIViewController {
         sqlite3_finalize(queryStatement)
     }
 
- @IBAction func yesButton(_ sender: Any) {
-       
-    if let presentedViewController = self.presentedViewController {
-            presentedViewController.dismiss(animated: false) {
-                self.presentAlert()
-            }
-        } else {
-            self.presentAlert()
-        }
-           insertData()
-           deleteFromToWatch()
-     
-    }
     
-    func presentAlert() {
-        let alertController = UIAlertController(title: "Moved Successfully", message: "Your item has been moved to Watched list!", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
-    }
-
+    
     func deleteFromToWatch() {
         let deleteStatementString = "DELETE FROM toWatch WHERE Name = ? AND Category = ? AND Description = ?;"
         var deleteStatement: OpaquePointer?
