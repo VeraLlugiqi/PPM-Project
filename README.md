@@ -28,7 +28,13 @@ Easily view all the programs you've watched in one place.<br>
 Scroll through the 'To Watch' page to explore your watchlist.<br>
 Enjoy your selected programs without the hassle of indecision.
 
-![IoS3](https://github.com/VeraLlugiqi/PPM-Project/assets/118756985/d1cf0bdb-6c44-4d3f-8c36-45732e32fb1b)
+![Screenshot 2024-02-29 at 01 42 02](https://github.com/VeraLlugiqi/PPM-Project/assets/115923848/ce399b31-ab11-4f92-9427-ebea42222a05)
+
+
+Click in a row to open more details
+
+![Screenshot 2024-02-29 at 01 44 35](https://github.com/VeraLlugiqi/PPM-Project/assets/115923848/d6751a23-a72b-4fda-8b5f-3c8ef7ddfa4c)
+
 
 <h2>Technologies Used</h2>
 WriteIT has been crafted following these technologies:
